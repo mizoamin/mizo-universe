@@ -16,7 +16,7 @@ export default async function PlanetOGImage({ params }: Props) {
   const planet = getPlanetBySlug(planetName);
 
   const planetColor = planet?.color ?? "#4fa3e0";
-  const planetName_ = planet?.name ?? "Unknown Planet";
+  const displayName = planet?.name ?? "Unknown Planet";
   const theme = planet?.theme ?? "universe";
   const description = planet?.description ?? "";
 
@@ -84,7 +84,7 @@ export default async function PlanetOGImage({ params }: Props) {
             display: "flex",
           }}
         >
-          {planetName_}
+          {displayName}
         </div>
 
         {/* Theme badge */}

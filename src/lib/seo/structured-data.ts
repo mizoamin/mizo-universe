@@ -14,14 +14,6 @@ export function buildWebSiteSchema() {
     alternateName: "MizoUniverse",
     description: SITE_TAGLINE,
     url: SITE_URL,
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/planet/{search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 
@@ -84,12 +76,6 @@ export function buildPlanetSchema(planet: Planet) {
         {
           "@type": "ListItem",
           position: 2,
-          name: "Planets",
-          item: getCanonicalUrl("/planet"),
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
           name: planet.name,
           item: getCanonicalUrl(`/planet/${planet.slug}`),
         },

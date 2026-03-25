@@ -50,7 +50,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/planets",
-        destination: "/planet",
+        destination: "/",
         permanent: true,
       },
     ];
