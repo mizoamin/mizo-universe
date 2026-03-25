@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "url": "/assets/images/2024/sports/champions-final-01.jpg",
+    "title": "AFC Champions League Final 2024",
+    "description": "Captain Mizo Amin lifting the AFC Champions League trophy",
+    "date": "2024-05-15",
+    "cat": "sports",
+    "tags": "football,afc,champions league,trophy",
+    "width": 3840,
+    "height": 2160
+  },
+  {
+    "id": 2,
+    "url": "/assets/images/2024/sports/training-camp-02.jpg",
+    "title": "Pre-Season Training Camp",
+    "description": "Morning training session in Dubai",
+    "date": "2024-01-10",
+    "cat": "sport",
+    "tags": ["training", "dubai", "pre-season"],
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "id": 3,
+    "url": "/assets/images/2023/business/brand-launch-03.jpg",
+    "title": "Mizo Brand Launch Event",
+    "description": "Official launch of the Mizo Universe brand in Bahrain",
+    "date": "2023-11-20",
+    "cat": "business",
+    "tags": "branding,launch,bahrain",
+    "width": 2560,
+    "height": 1440
+  },
+  {
+    "id": 4,
+    "url": "/assets/images/2023/technology/tech-summit-04.jpg",
+    "title": "GITEX Technology Summit",
+    "description": "Keynote address at GITEX 2023 on digital sports ecosystems",
+    "date": "2023-10-16",
+    "cat": "tech",
+    "width": 1920,
+    "height": 1080
+  },
+  {
+    "id": 5,
+    "url": "https://assets.hostinger.com/mizo-universe/lifestyle/family-05.jpg",
+    "title": "Family Moment",
+    "date": 1697500800000,
+    "cat": "lifestyle",
+    "tags": "family,personal",
+    "width": 2048,
+    "height": 1366
+  }
+]
