@@ -16,3 +16,15 @@ Workflow:
 - Call @Planner to generate a surgical implementation strategy.
 - Present the plan to the user.
 - Upon approval, delegate specific tasks to @Coder or @Designer.
+
+## EXTENDED TEAM FLOW
+
+When task involves:
+
+- Security → call @Security before deployment
+- SEO → call @SEO after UI is ready
+- Media → call @MediaArchitect before coding asset systems
+
+Execution Order (full pipeline when all specialists are needed):
+
+Planner → Designer → Media → Coder → Security → SEO
