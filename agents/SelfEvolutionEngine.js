@@ -75,16 +75,19 @@ export class SelfEvolutionEngine {
     const healthScore = parseInt((progressDoc.match(/Health Score:\s*(\d+)/i) || [])[1] || '0', 10);
     const progress = parseInt((progressDoc.match(/Progress:\s*(\d+)%/i) || [])[1] || '0', 10);
     const currentPhase = (progressDoc.match(/Current Phase:\s*(.+)/i) || [])[1]?.trim() || 'Unknown';
-    const nextPriority = (progressDoc.match(/Next Priority:\s*(.+)/i) || [])[1]?.trim() || 'Unknown';
-    const riskLevel = (progressDoc.match(/Risk Level:\s*(.+)/i) || [])[1]?.trim() || 'Unknown';
+    // Strip leading markdown bold markers (e.g. "** value" → "value")
+    const nextPriorityRaw = (progressDoc.match(/Next Priority:\s*(.+)/i) || [])[1]?.trim() || 'Unknown';
+    const nextPriority = nextPriorityRaw.replace(/^\*+\s*/, '');
+    const riskLevelRaw = (progressDoc.match(/Risk Level:\s*(.+)/i) || [])[1]?.trim() || 'Unknown';
+    const riskLevel = riskLevelRaw.replace(/^\*+\s*/, '');
 
-    const bottleneckSectionMatch = progressDoc.match(/Bottlenecks:\s*([\s\S]*?)(?:\n\n|\n## )/i);
+    const bottleneckSectionMatch = progressDoc.match(/Bottlenecks:\s*([\s\S]*?)(?=\n-\s+(?:Risk Level|Next Priority|Health Score|Progress|Current Phase)|\n\n|\n##\s)/i);
     const bottlenecks = bottleneckSectionMatch
       ? uniq(
           bottleneckSectionMatch[1]
-            .split('\n')
-            .map((line) => line.match(/^\s*-\s+(.+)$/)?.[1]?.trim())
-            .filter(Boolean),
+            .split(/;|\n/)
+            .map((item) => item.replace(/^\s*-?\s*\**/g, '').replace(/\*+$/, '').trim())
+            .filter((item) => item && !/^Risk Level/i.test(item)),
         )
       : [];
 
@@ -114,6 +117,7 @@ export class SelfEvolutionEngine {
       });
     }
 
+    // Per-target check: only flag if the ⚠️/❌ marker appears on the SAME line as the target filename
     const partialTargets = [
       'seoConfig.ts',
       'performance.ts',
@@ -122,7 +126,8 @@ export class SelfEvolutionEngine {
       'ShootingStars.tsx',
     ];
     for (const target of partialTargets) {
-      if (progress.includes(`${target}`) && /⚠️\s*Partial|⚠️\s*Placeholder|❌/i.test(progress)) {
+      const linePattern = new RegExp(`${target.replace('.', '\\.')}[^\\n]*(?:⚠️\\s*Partial|⚠️\\s*Placeholder|❌)`, 'i');
+      if (linePattern.test(progress)) {
         weaknesses.push({
           code: `INCOMPLETE_${target}`,
           severity: 'medium',
@@ -155,6 +160,38 @@ export class SelfEvolutionEngine {
       });
     }
 
+    // Detect unresolved SEO blockers in todo
+    if (/- \[ \].*Dynamic meta tags for 20k\+/i.test(todo)) {
+      weaknesses.push({
+        code: 'MISSING_DYNAMIC_ASSET_META',
+        severity: 'medium',
+        summary: 'Dynamic meta tags for 20k+ asset pages are not yet implemented.',
+      });
+    }
+
+    // Detect if ShootingStars Phase 5 work is still open in todo
+    if (/- \[ \].*ShootingStars/i.test(todo)) {
+      weaknesses.push({
+        code: 'TODO_SHOOTINGSTARS_OPEN',
+        severity: 'low',
+        summary: 'ShootingStars particle system still listed as open in todo.md.',
+      });
+    }
+
+    // Detect if summary table shows stale overall percentage
+    const overallMatch = progress.match(/\*\*Overall\*\*\s*\|\s*\*\*~?(\d+)%\*\*/i);
+    if (overallMatch) {
+      const overallPct = parseInt(overallMatch[1], 10);
+      const dashboardProgress = parseInt((progress.match(/Progress:\s*(\d+)%/i) || [])[1] || '0', 10);
+      if (Math.abs(overallPct - dashboardProgress) > 15) {
+        weaknesses.push({
+          code: 'PROGRESS_SUMMARY_DRIFT',
+          severity: 'medium',
+          summary: `Summary table shows ${overallPct}% but dashboard reports ${dashboardProgress}% — synchronize docs.`,
+        });
+      }
+    }
+
     return weaknesses;
   }
 
@@ -176,6 +213,15 @@ export class SelfEvolutionEngine {
       }
       if (weakness.code === 'MISSING_AUTONOMOUS_LOOP') {
         suggestions.push('Add Autonomous Loop section enforcing analyze -> detect -> suggest -> update docs after every cycle.');
+      }
+      if (weakness.code === 'MISSING_DYNAMIC_ASSET_META') {
+        suggestions.push('Implement dynamic meta tags for 20k+ asset pages — required for full Google 2026 indexing coverage.');
+      }
+      if (weakness.code === 'TODO_SHOOTINGSTARS_OPEN') {
+        suggestions.push('Mark ShootingStars.tsx as complete in docs/todo.md — particle trail system has been implemented.');
+      }
+      if (weakness.code === 'PROGRESS_SUMMARY_DRIFT') {
+        suggestions.push('Synchronize docs/progress.md summary table percentage with dashboard progress percentage.');
       }
     }
 

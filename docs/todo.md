@@ -119,8 +119,8 @@ After every execution cycle:
 
 > **Priority:** HIGH — Required for Google ranking goals.
 
-- [ ] Implement `seoConfig.ts` — per-planet meta tags, OpenGraph, Twitter cards
-- [ ] Add JSON-LD structured data — "Professional Athlete" + "Business Entity" schemas
+- [x] Implement `seoConfig.ts` — per-planet meta tags, OpenGraph, Twitter cards (bilingual EN/AR registry, `buildPlanetMetadata()` helper)
+- [x] Add JSON-LD structured data — `buildPersonJsonLd()` (Professional Athlete), `buildOrganizationJsonLd()` (Business Entity), `buildVideoJsonLd()`, `buildPlanetPageJsonLd()`
 - [ ] Dynamic metadata for 20k+ asset pages
 - [ ] Verify sitemap covers all dynamic routes
 - [ ] Core Web Vitals audit (LCP < 2.5s, FID < 100ms, CLS < 0.1)
@@ -131,11 +131,11 @@ After every execution cycle:
 
 > **Priority:** MEDIUM — Visual polish and particle systems.
 
-- [ ] Implement `ShootingStars.tsx` geometry — skeleton code exists, needs particle trail system
-- [ ] Implement `performance.ts` — FPS monitor, frame budget tracking
-- [ ] Implement `mathUtils.ts` — shared math utilities (lerp, clamp, remap)
-- [ ] Implement `useCinematicLerp.ts` — reusable cinematic interpolation hook
-- [x] Implement `usePlanetTextures.ts` — planet texture loader hook
+- [x] Implement `ShootingStars.tsx` geometry — 60-trail particle system with instanced line geometry, seeded random launch, frame-rate-independent fade
+- [x] Implement `performance.ts` — FrameBudgetMonitor with rolling FPS sampler, light-mode trigger, recovery callback, global singleton
+- [x] Implement `mathUtils.ts` — lerp, dampLerp, tickSpring, clamp, remap, smoothStep/erStep, fibonacciSphere, latLngToXYZ, haversineDistance, seededRandom, lerpHex
+- [x] Implement `useCinematicLerp.ts` — reusable cinematic interpolation hook (dampNumber, dampVector3, dampEulerY)
+- [x] Implement `usePlanetTextures.ts` — planet texture loader hook with cache, preload, and safe fallback
 - [ ] Global UI polish — planet info cards, breadcrumb navigation, transitions
 
 ---
