@@ -1,0 +1,33 @@
+# GitHub Action: Extract Legacy Assets from Large Manifest
+# This workflow runs the extraction script automatically on push or schedule.
+
+name: Extract Legacy Assets
+
+on:
+  push:
+    paths:
+      - 'src/data/hostinger-registry/assets_manifest_v8.json'
+      - 'scripts/extractLegacyAssets.js'
+  schedule:
+    - cron: '0 3 * * *' # Every day at 3am UTC
+
+jobs:
+  extract-legacy-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run extraction script
+        run: |
+          node scripts/extractLegacyAssets.js
+      - name: Commit and push legacy_assets.json
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add src/data/hostinger-registry/legacy_assets.json
+          git commit -m 'chore: update legacy_assets.json [auto]' || echo 'No changes to commit'
+          git push

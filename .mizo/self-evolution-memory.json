@@ -1,0 +1,40 @@
+{
+  "runs": 1,
+  "unresolvedBySuggestion": {
+    "Consolidate duplicate Phase 12 sections in docs/todo.md into a single source of truth.": 1,
+    "Prioritize stub completion for SEO and runtime performance utilities before new feature expansion.": 1,
+    "Update docs/architecture.md to reflect current solar system wiring and active planet count.": 1,
+    "Raise risk level from Low while high-severity documentation drift remains unresolved.": 1
+  },
+  "recurringWeaknesses": {
+    "DUPLICATE_PHASE_12": 1,
+    "INCOMPLETE_seoConfig.ts": 1,
+    "INCOMPLETE_performance.ts": 1,
+    "INCOMPLETE_mathUtils.ts": 1,
+    "INCOMPLETE_usePlanetTextures.ts": 1,
+    "INCOMPLETE_ShootingStars.tsx": 1,
+    "ARCH_DOC_STALE_WIRING": 1
+  },
+  "recentReports": [
+    {
+      "at": "2026-04-01T21:55:27.667Z",
+      "weaknesses": [
+        "DUPLICATE_PHASE_12",
+        "INCOMPLETE_seoConfig.ts",
+        "INCOMPLETE_performance.ts",
+        "INCOMPLETE_mathUtils.ts",
+        "INCOMPLETE_usePlanetTextures.ts",
+        "INCOMPLETE_ShootingStars.tsx",
+        "ARCH_DOC_STALE_WIRING"
+      ],
+      "suggestions": [
+        "Consolidate duplicate Phase 12 sections in docs/todo.md into a single source of truth.",
+        "Prioritize stub completion for SEO and runtime performance utilities before new feature expansion.",
+        "Update docs/architecture.md to reflect current solar system wiring and active planet count.",
+        "Raise risk level from Low while high-severity documentation drift remains unresolved."
+      ],
+      "score": 59
+    }
+  ],
+  "lastHealthScore": 59
+}

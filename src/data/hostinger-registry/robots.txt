@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mizoamin.com/mizo_sitemap_index.xml

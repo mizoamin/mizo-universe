@@ -1,0 +1,37 @@
+# .github/workflows/self-evolution.yml
+# GitHub Actions workflow to run the full self-evolution loop on every push to main
+
+name: Self-Evolution Engine
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 3 * * *' # Every day at 03:00 UTC
+
+jobs:
+  self-evolution:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Self-Evolution Engine (dashboard and suggestions)
+        run: npx ts-node agents/agentWorkflow.ts
+
+      - name: Auto-create GitHub issues for all unchecked TODOs
+        run: node scripts/createGithubIssuesFromTodo.cjs
+
+      - name: Send dashboard and suggestions to email
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: node scripts/notifySelfEvolutionResults.cjs
