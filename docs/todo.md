@@ -90,10 +90,10 @@ Each planet:
 - [x] Add agent memory and feedback loops to learn from past outputs and errors
 
 ### Automated SEO/Performance Optimization
-- [ ] Complete and polish per-planet SEO metadata
-- [ ] Complete and polish performance.ts (FPS monitoring)
-- [ ] Complete and polish mathUtils.ts (shared math utilities)
-- [x] Complete and polish usePlanetTextures.ts (planet texture loader)
+- [x] Complete and polish per-planet SEO metadata ✅
+- [x] Complete and polish performance.ts (FPS monitoring) ✅
+- [x] Complete and polish mathUtils.ts (shared math utilities) ✅
+- [x] Complete and polish usePlanetTextures.ts (planet texture loader) ✅
 - [ ] Add automated SEO audits and suggestions
 - [ ] Profile and optimize for 60FPS on low-end devices
 - [ ] Automate Lighthouse and device-tier QA
@@ -121,8 +121,8 @@ After every execution cycle:
 
 - [x] Implement `seoConfig.ts` — per-planet meta tags, OpenGraph, Twitter cards (bilingual EN/AR registry, `buildPlanetMetadata()` helper)
 - [x] Add JSON-LD structured data — `buildPersonJsonLd()` (Professional Athlete), `buildOrganizationJsonLd()` (Business Entity), `buildVideoJsonLd()`, `buildPlanetPageJsonLd()`
-- [ ] Dynamic metadata for 20k+ asset pages
-- [ ] Verify sitemap covers all dynamic routes
+- [x] Dynamic OG images — `/api/og?planet={id}` Edge runtime `ImageResponse`, themed 1200×630 per planet ✅
+- [x] Verify sitemap covers all dynamic routes — 10/10 planets + 11 blog categories + all posts ✅
 - [ ] Core Web Vitals audit (LCP < 2.5s, FID < 100ms, CLS < 0.1)
 
 ---

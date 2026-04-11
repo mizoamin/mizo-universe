@@ -17,7 +17,7 @@ import type { PlanetId } from "./planetMetadata";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mizoamin.com";
 const SITE_NAME = "Mizo Universe";
 const AUTHOR_NAME = "Mizo Amin";
-const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og-default.jpg`;
+const DEFAULT_OG_IMAGE = `${SITE_URL}/api/og`;
 const TWITTER_HANDLE = "@mizoamin";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -186,6 +186,9 @@ export function buildPlanetMetadata(
   const description = locale === "ar" ? seo.descriptionAr : seo.descriptionEn;
   const url = `${SITE_URL}/${planetId}`;
 
+  // Use the dynamic OG image route — generates a styled 1200×630 image per planet
+  const ogImageUrl = `${SITE_URL}/api/og?planet=${planetId}`;
+
   return {
     title,
     description,
@@ -205,9 +208,7 @@ export function buildPlanetMetadata(
       siteName: SITE_NAME,
       images: [
         {
-          url: seo.ogImage.startsWith("http")
-            ? seo.ogImage
-            : `${SITE_URL}${seo.ogImage}`,
+          url: ogImageUrl,
           width: 1200,
           height: 630,
           alt: seo.titleEn,
@@ -221,11 +222,7 @@ export function buildPlanetMetadata(
       title: seo.titleEn,
       description: seo.descriptionEn,
       creator: TWITTER_HANDLE,
-      images: [
-        seo.ogImage.startsWith("http")
-          ? seo.ogImage
-          : `${SITE_URL}${seo.ogImage}`,
-      ],
+      images: [ogImageUrl],
     },
   };
 }
