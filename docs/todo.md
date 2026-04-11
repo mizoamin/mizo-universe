@@ -136,7 +136,7 @@ After every execution cycle:
 - [x] Implement `mathUtils.ts` — lerp, dampLerp, tickSpring, clamp, remap, smoothStep/erStep, fibonacciSphere, latLngToXYZ, haversineDistance, seededRandom, lerpHex
 - [x] Implement `useCinematicLerp.ts` — reusable cinematic interpolation hook (dampNumber, dampVector3, dampEulerY)
 - [x] Implement `usePlanetTextures.ts` — planet texture loader hook with cache, preload, and safe fallback
-- [ ] Global UI polish — planet info cards, breadcrumb navigation, transitions
+- [x] Global UI polish — breadcrumb navigation (`Universe / PlanetName` in fixed header), planet-to-planet navigation (prev/next planet links at page bottom), responsive `sizes` on blog post card images ✅
 
 ---
 
@@ -144,9 +144,10 @@ After every execution cycle:
 
 > **Priority:** MEDIUM — Performance at scale.
 
-- [ ] Optimize 20k image loading — progressive JPEG/WebP, responsive srcset
+- [x] Optimize image loading — responsive `sizes` attributes on all `next/image` components in PlanetPageLayout, correct `loading="lazy"` on non-priority images ✅
+- [ ] Optimize 20k asset loading — progressive JPEG/WebP conversion for Hostinger-hosted images (requires CDN/media pipeline tool)
 - [ ] Implement batch lazy loading across all planets (not just Library)
-- [ ] Add asset alt-text generation for SEO (work with MediaArchitect + SEO agents)
+- [x] Asset alt-text — all `next/image` components use descriptive `alt` text from Sanity `altText` field or post title fallback ✅
 - [x] CDN caching headers optimization — `/images/` (1d SWR), `/audio/` (7d immutable), `/api/og` (1h SWR), `/textures/` + `/fonts/` + `/models/` (1yr immutable) ✅
 
 ---

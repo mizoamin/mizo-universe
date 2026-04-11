@@ -71,3 +71,18 @@ export const planetsData: Record<PlanetId, PlanetMetadata> = {
 
 // Helper function to map through planets easily
 export const getPlanetsArray = () => Object.values(planetsData);
+
+// ─── Planet Navigation ────────────────────────────────────────────────────────
+
+/** Returns the previous and next planets in orbital order for planet-to-planet navigation */
+export function getPlanetNeighbors(id: PlanetId): {
+  prev: PlanetMetadata | null;
+  next: PlanetMetadata | null;
+} {
+  const planets = getPlanetsArray();
+  const idx = planets.findIndex((p) => p.id === id);
+  return {
+    prev: idx > 0 ? planets[idx - 1] : null,
+    next: idx < planets.length - 1 ? planets[idx + 1] : null,
+  };
+}

@@ -90,7 +90,7 @@ _Auto-updated: Thu, 02 Apr 2026 16:34:38 GMT · Run #2_
 | `WarpTransition.tsx` | ✅ Done | WCAG 2.3.1 compliant (reduced-motion) |
 | `SocialNexus.tsx` | ✅ Done | Inline SVG icons, zero external deps |
 | `PlanetCard/index.tsx` | ✅ Done | Enter-mode trigger, WarpTransition |
-| `PlanetPageLayout.tsx` | ✅ Done | Cinematic hero + scroll-fade + blog grid + widget slots |
+| `PlanetPageLayout.tsx` | ✅ Done | Cinematic hero + scroll-fade + blog grid + widget slots + breadcrumb nav + planet-to-planet navigation (prev/next) |
 | `ScrollFadeHero.tsx` | ✅ Done | Zero-re-render scroll parallax (direct DOM) |
 | `StatPulse.tsx` | ✅ Done | Animated stat grid, IntersectionObserver reveal |
 | `ProjectOrbit.tsx` | ✅ Done | Horizontal snap-scroll project slider |

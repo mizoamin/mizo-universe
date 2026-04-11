@@ -18,7 +18,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { planetsData, type PlanetId } from "@/config/planetMetadata";
+import { planetsData, getPlanetNeighbors, type PlanetId } from "@/config/planetMetadata";
 import { PLANET_PAGE_CONFIG } from "@/config/planetPageConfig";
 import { getPostsByCategorySlugs, type SanityPost } from "@/lib/blogQueries";
 import { buildPersonJsonLd, PLANET_SEO } from "@/config/seoConfig";
@@ -60,6 +60,7 @@ function PostCard({
             alt={post.mainImage?.altText ?? post.title}
             width={400}
             height={192}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
@@ -96,6 +97,7 @@ export default async function PlanetPageLayout({
 }: PlanetPageLayoutProps) {
   const planet = planetsData[planetId];
   const config = PLANET_PAGE_CONFIG[planetId];
+  const { prev, next } = getPlanetNeighbors(planetId);
 
   // Fetch related blog posts (graceful Sanity fallback)
   let posts: SanityPost[] = [];
@@ -157,30 +159,33 @@ export default async function PlanetPageLayout({
 
         {/* ═══ Floating Header ═══ */}
         <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 h-14 bg-gradient-to-b from-black/60 to-transparent pointer-events-none">
-          <Link
-            href="/"
-            className="pointer-events-auto flex items-center gap-2 text-white/60 hover:text-white text-sm font-medium transition-colors"
+          {/* Breadcrumb trail */}
+          <nav
+            aria-label="Breadcrumb"
+            className="pointer-events-auto flex items-center gap-1.5 text-xs font-mono"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <Link
+              href="/"
+              className="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Universe
-          </Link>
-          <span
-            className="pointer-events-none text-xs font-bold uppercase tracking-[3px]"
-            style={{ color: planet.themeColor }}
-          >
-            {planet.name}
+              <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <circle cx="12" cy="12" r="3" strokeWidth={2} />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+              </svg>
+              <span>Universe</span>
+            </Link>
+            <span className="text-white/20">/</span>
+            <span
+              className="font-bold uppercase tracking-[2px] text-[10px]"
+              style={{ color: planet.themeColor }}
+              aria-current="page"
+            >
+              {planet.name}
+            </span>
+          </nav>
+          {/* Planet HUD label — right side */}
+          <span className="pointer-events-none text-[10px] font-bold uppercase tracking-[3px] text-white/30">
+            {planet.ui.title}
           </span>
         </header>
 
@@ -200,7 +205,6 @@ export default async function PlanetPageLayout({
                 blurDataURL={config.blurDataUrl}
               />
             )}
-
             {/* Radial accent glow */}
             <div
               className="absolute inset-0 pointer-events-none"
@@ -349,6 +353,92 @@ export default async function PlanetPageLayout({
               </section>
             )
           ) : null}
+
+          {/* Planet-to-Planet Navigation */}
+          {(prev || next) && (
+            <nav
+              aria-label="Planet navigation"
+              className="border-t border-white/[0.04] mt-8"
+            >
+              <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+                <p className="text-center text-[10px] uppercase tracking-[4px] text-gray-700 mb-6">
+                  Navigate the Universe
+                </p>
+                <div className="flex items-stretch justify-between gap-4">
+                  {/* Previous planet */}
+                  {prev ? (
+                    <Link
+                      href={prev.routePath}
+                      className="group flex-1 flex items-center gap-4 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
+                    >
+                      <svg
+                        className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      <div className="min-w-0">
+                        <p className="text-[10px] uppercase tracking-[3px] text-gray-600 mb-1">Previous</p>
+                        <p
+                          className="text-sm font-bold uppercase tracking-wider truncate group-hover:text-white transition-colors"
+                          style={{ color: prev.themeColor }}
+                        >
+                          {prev.name}
+                        </p>
+                        <p className="text-xs text-gray-700 truncate mt-0.5">{prev.ui.title}</p>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="flex-1" />
+                  )}
+
+                  {/* Universe home */}
+                  <Link
+                    href="/"
+                    className="group flex flex-col items-center justify-center gap-2 px-6 py-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300 flex-shrink-0"
+                    aria-label="Return to Universe"
+                  >
+                    <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                    </svg>
+                    <span className="text-[9px] uppercase tracking-[3px] text-gray-600 group-hover:text-white transition-colors">Universe</span>
+                  </Link>
+
+                  {/* Next planet */}
+                  {next ? (
+                    <Link
+                      href={next.routePath}
+                      className="group flex-1 flex items-center justify-end gap-4 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300"
+                    >
+                      <div className="min-w-0 text-right">
+                        <p className="text-[10px] uppercase tracking-[3px] text-gray-600 mb-1">Next</p>
+                        <p
+                          className="text-sm font-bold uppercase tracking-wider truncate group-hover:text-white transition-colors"
+                          style={{ color: next.themeColor }}
+                        >
+                          {next.name}
+                        </p>
+                        <p className="text-xs text-gray-700 truncate mt-0.5">{next.ui.title}</p>
+                      </div>
+                      <svg
+                        className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  ) : (
+                    <div className="flex-1" />
+                  )}
+                </div>
+              </div>
+            </nav>
+          )}
 
           {/* Footer */}
           <footer className="border-t border-white/[0.04] mt-8">
