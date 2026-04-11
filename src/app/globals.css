@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌌 MIZO UNIVERSE DESIGN TOKENS (Tailwind v4 @theme Block) */
+/* Single Source of Truth for Spatial UI Constants */
+@theme {
+  /* ✨ SPATIAL COLOR PALETTE */
+  --color-accent-primary: #00ffaa;     /* Mint glow (primary interactive) */
+  --color-accent-secondary: #00d4ff;   /* Ice blue (secondary accents) */
+  --color-accent-tertiary: #ff7aff;    /* Magenta (tertiary highlights) */
+  
+  --color-text-primary: #ffffff;       /* Pure white for headings/primary text */
+  --color-text-secondary: #c0e0ff;     /* Dim cyan for body copy in panels */
+  --color-text-muted: #ffffff40;       /* Ultra-dim for labels/hints */
+  
+  --color-surface-glass: rgba(5, 20, 35, 0.7);    /* Glass start (top) */
+  --color-surface-void: rgba(0, 5, 10, 0.85);     /* Glass end (bottom) */
+  --color-surface-dark: #050505;                   /* Pure dark for backgrounds */
+  
+  --color-sun-core: #ffb300;           /* Sun core emissive color */
+  --color-sun-glow: #ff7a00;           /* Sun emissive intensity */
+  
+  /* 🎨 GLASSMORPHISM RECIPE */
+  --blur-spatial-sm: blur(12px);
+  --blur-spatial-md: blur(24px);
+  --blur-spatial-lg: blur(32px);
+  
+  --opacity-glass-surface: 0.7;
+  --opacity-glass-end: 0.85;
+  --opacity-ghost-ui: 0.1;
+  --opacity-inactive: 0.3;
+  
+  /* 📐 SPACING & SIZING */
+  --radius-spatial-sm: 8px;
+  --radius-spatial-md: 16px;
+  --radius-spatial-lg: 24px;
+  
+  /* ✍️ TYPOGRAPHY */
+  --tracking-hud: 3px;              /* HUD labels */
+  --tracking-cinematic: 6px;        /* Planet titles */
+  --tracking-whisper: 0.4em;        /* Instructional text */
+  
+  /* 🌟 SHADOW RECIPES */
+  --shadow-spatial-glow: 0 0 40px rgba(0, 255, 170, 0.15),
+                         inset 0 0 20px rgba(0, 200, 255, 0.1);
+  --shadow-accent-line: 0 0 20px rgba(0, 255, 170, 0.4);
+}
+
+/* 🌌 1. Core 3D Layout Reset */
+/* Forces the browser to respect a full-screen, non-scrollable black canvas */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+  overscroll-behavior: none; /* Prevents pull-to-refresh on mobile */
+}
+
+/* 🛑 2. Cross-Device Touch & Selection Armor */
+/* Prevents blue flashes, text highlighting, and popup menus on foldables and tablets */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  outline: none !important;
+}
+
+/* ✍️ 3. Safe Exceptions */
+/* Ensures that if we add a contact form later, you can actually type in it */
+input,
+textarea {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* 🪐 Planet Landing Pages — Scrollable override */
+/* Creates a fixed scrollable layer that bypasses global overflow:hidden */
+.planet-page {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  z-index: 1;
+}
+
+/* 📱 P-06: CSS Folding API — Foldable Hinge Guard */
+/* When device is in dual-segment landscape (book/Flex mode), the hinge crease
+   bisects the viewport. This forces .planet-overlay-panel into the right segment
+   so the 3D scene and the UI panel each own one display half cleanly. */
+@media (horizontal-viewport-segments: 2) {
+  .planet-overlay-panel {
+    width: env(viewport-segment-width 1 0) !important;
+    max-width: env(viewport-segment-width 1 0) !important;
+  }
+}

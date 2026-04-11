@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated lock files (auto-generated, not needed in PR diff)
+package-lock.json
+
+# Large Hostinger registry data files (not source code — runtime CDN assets)
+src/data/hostinger-registry/assets_manifest_v8.json
+src/data/hostinger-registry/master_image_list_v8.txt
+src/data/hostinger-registry/folder_structure_plan.txt
+src/data/hostinger-registry/seo-v8.txt
+src/data/hostinger-registry/seo_ai_readable_report_V20.txt
+src/data/hostinger-registry/mizo_sitemap_part_*.xml
+src/data/hostinger-registry/mizo_sitemap_index.xml
+src/data/hostinger-registry/mizo_google_verify*.html
+src/data/hostinger-registry/mizo_master_ai_catalog.html
+src/data/hostinger-registry/mizo_rich_results_verify.html
+src/data/hostinger-registry/mizo_seo_engine*.php
+src/data/hostinger-registry/robots.txt
+
+# Dev artifacts / prototypes
+hero_v2.html
+*.bak
+
+# Screenshots / local testing captures
+screenshots/
