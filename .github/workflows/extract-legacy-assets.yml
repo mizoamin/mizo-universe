@@ -1,15 +1,12 @@
 # GitHub Action: Extract Legacy Assets from Large Manifest
-# This workflow runs the extraction script automatically on push or schedule.
+# NOTE: assets_manifest_v8.json is gitignored (too large for GitHub API).
+# This workflow is disabled (workflow_dispatch only) until the manifest
+# is available via an external CDN/artifact store instead.
 
 name: Extract Legacy Assets
 
 on:
-  push:
-    paths:
-      - 'src/data/hostinger-registry/assets_manifest_v8.json'
-      - 'scripts/extractLegacyAssets.js'
-  schedule:
-    - cron: '0 3 * * *' # Every day at 3am UTC
+  workflow_dispatch:
 
 jobs:
   extract-legacy-assets:
