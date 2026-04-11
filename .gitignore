@@ -39,3 +39,27 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated lock files (auto-generated, not needed in PR diff)
+package-lock.json
+
+# Large Hostinger registry data files (not source code — runtime CDN assets)
+src/data/hostinger-registry/assets_manifest_v8.json
+src/data/hostinger-registry/master_image_list_v8.txt
+src/data/hostinger-registry/folder_structure_plan.txt
+src/data/hostinger-registry/seo-v8.txt
+src/data/hostinger-registry/seo_ai_readable_report_V20.txt
+src/data/hostinger-registry/mizo_sitemap_part_*.xml
+src/data/hostinger-registry/mizo_sitemap_index.xml
+src/data/hostinger-registry/mizo_google_verify*.html
+src/data/hostinger-registry/mizo_master_ai_catalog.html
+src/data/hostinger-registry/mizo_rich_results_verify.html
+src/data/hostinger-registry/mizo_seo_engine*.php
+src/data/hostinger-registry/robots.txt
+
+# Dev artifacts / prototypes
+hero_v2.html
+*.bak
+
+# Screenshots / local testing captures
+screenshots/
