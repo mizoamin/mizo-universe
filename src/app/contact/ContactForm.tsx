@@ -30,10 +30,24 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("sending");
 
-    // Simulate submission — wire to real API endpoint when ready
-    setTimeout(() => {
-      setStatus("sent");
-    }, 1200);
+    const data = new FormData(e.currentTarget);
+    const name = (data.get("name") as string) ?? "";
+    const email = (data.get("email") as string) ?? "";
+    const type = (data.get("type") as string) ?? "general";
+    const message = (data.get("message") as string) ?? "";
+
+    const subject = encodeURIComponent(`[${type}] Message from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nType: ${type}\n\nMessage:\n${message}`,
+    );
+
+    // Open default mail client pre-filled — no backend required
+    window.open(
+      `mailto:contact@mizoamin.com?subject=${subject}&body=${body}`,
+      "_blank",
+    );
+
+    setStatus("sent");
   };
 
   if (status === "sent") {
@@ -50,8 +64,8 @@ export default function ContactForm() {
           Transmission Received
         </h2>
         <p className="text-gray-400">
-          Your message has entered the Mizo Universe. Expect a response within
-          48 hours.
+          Your mail client opened with the message pre-filled. Hit send to
+          complete the transmission. Expect a response within 48 hours.
         </p>
       </div>
     );
