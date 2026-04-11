@@ -18,9 +18,10 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // ─── Performance Headers ────────────────────────────────────────────
+  // ─── Security + Performance Headers ─────────────────────────────────
   async headers() {
     return [
+      // ── Global security headers (all routes) ──────────────────────
       {
         source: "/(.*)",
         headers: [
@@ -40,10 +41,22 @@ const nextConfig: NextConfig = {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
           },
+          {
+            // HSTS: enforce HTTPS for 2 years, include subdomains, preload
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
+          {
+            // Restrict browser feature access — minimal attack surface
+            key: "Permissions-Policy",
+            value:
+              "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+          },
         ],
       },
+
+      // ── Static WebGL + 3D assets — immutable (1 year) ────────────
       {
-        // Cache static assets aggressively
         source: "/fonts/(.*)",
         headers: [
           {
@@ -67,6 +80,39 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+
+      // ── OG images — short cache so updates propagate quickly ──────
+      {
+        source: "/images/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+
+      // ── Audio assets — medium-term cache ─────────────────────────
+      {
+        source: "/audio/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, immutable",
+          },
+        ],
+      },
+
+      // ── Dynamic OG image API — short-lived CDN cache ──────────────
+      {
+        source: "/api/og",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
           },
         ],
       },

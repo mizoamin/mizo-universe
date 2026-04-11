@@ -147,7 +147,7 @@ After every execution cycle:
 - [ ] Optimize 20k image loading — progressive JPEG/WebP, responsive srcset
 - [ ] Implement batch lazy loading across all planets (not just Library)
 - [ ] Add asset alt-text generation for SEO (work with MediaArchitect + SEO agents)
-- [ ] CDN caching headers optimization
+- [x] CDN caching headers optimization — `/images/` (1d SWR), `/audio/` (7d immutable), `/api/og` (1h SWR), `/textures/` + `/fonts/` + `/models/` (1yr immutable) ✅
 
 ---
 

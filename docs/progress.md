@@ -21,7 +21,7 @@
 - Progress: 99%
 - Current Phase: Phase 13 — Deployment & QA
 - Next Priority: Lighthouse audit → production deploy
-- Bottlenecks: Final Lighthouse + mobile QA; CDN caching headers verification
+- Bottlenecks: Final Lighthouse + mobile QA
 - Risk Level: Low
 
 _Auto-updated: Thu, 02 Apr 2026 16:34:38 GMT · Run #2_
@@ -163,6 +163,8 @@ All 17 routes exist:
 - ✅ `middleware.ts` — Route protection, rate limiting (10 req/min), WordPress slug redirect
 - ✅ Token-based auth for secret-control-room
 - ✅ HMAC signature verification on webhooks
+- ✅ `robots.ts` — `/api/og` allowed for social crawlers; `/api/generate-blog` + `/secret-control-room/` disallowed
+- ✅ `next.config.ts` — HSTS (2yr + preload), Permissions-Policy, CDN cache rules for `/images/` (1d SWR), `/audio/` (7d), `/api/og` (1h SWR)
 
 ---
 
