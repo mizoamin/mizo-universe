@@ -169,8 +169,8 @@ export default async function PlanetPageLayout({
               className="flex items-center gap-1.5 text-white/50 hover:text-white transition-colors"
             >
               <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <circle cx="12" cy="12" r="3" strokeWidth={2} />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                <circle cx="12" cy="12" r="2.5" strokeWidth={2} />
+                <ellipse cx="12" cy="12" rx="10" ry="4.5" strokeWidth={1.5} />
               </svg>
               <span>Universe</span>
             </Link>
@@ -401,8 +401,8 @@ export default async function PlanetPageLayout({
                     aria-label="Return to Universe"
                   >
                     <svg className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <circle cx="12" cy="12" r="3" strokeWidth={1.5} />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                      <circle cx="12" cy="12" r="2.5" strokeWidth={1.5} />
+                      <ellipse cx="12" cy="12" rx="10" ry="4.5" strokeWidth={1.5} />
                     </svg>
                     <span className="text-[9px] uppercase tracking-[3px] text-gray-600 group-hover:text-white transition-colors">Universe</span>
                   </Link>
