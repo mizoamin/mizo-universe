@@ -1,0 +1,84 @@
+/* Import design tokens first (CSS variables foundation) */
+@import '../styles/design-tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ⚠️ BACKWARDS COMPATIBILITY — Legacy color aliases for non-migrated components */
+/* These map old variable names to new ones. Remove after full migration. */
+@supports (--test: 0) {
+  :root {
+    --color-accent-primary: var(--color-accent-prime);
+    --color-sun-core: #ffb300; /* Sun core emissive color */
+    --color-sun-glow: #ff7a00; /* Sun emissive intensity */
+    --blur-spatial-sm: var(--blur-glass-sm);
+    --blur-spatial-md: var(--blur-glass-md);
+    --blur-spatial-lg: var(--blur-glass-lg);
+    --opacity-glass-end: var(--opacity-glass-deep);
+    --opacity-ghost-ui: var(--opacity-glass-ghost);
+    --opacity-inactive: 0.3;
+    --radius-spatial-sm: var(--radius-md);
+    --radius-spatial-md: var(--radius-xl);
+    --radius-spatial-lg: var(--radius-2xl);
+    --shadow-spatial-glow: var(--shadow-glow-primary);
+    --shadow-accent-line: var(--shadow-glow-secondary);
+  }
+}
+
+/* 🌌 1. Core 3D Layout Reset */
+/* Forces the browser to respect a full-screen, non-scrollable black canvas */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000000;
+  overscroll-behavior: none; /* Prevents pull-to-refresh on mobile */
+}
+
+/* 🛑 2. Cross-Device Touch & Selection Armor */
+/* Prevents blue flashes, text highlighting, and popup menus on foldables and tablets */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  -khtml-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  outline: none !important;
+}
+
+/* ✍️ 3. Safe Exceptions */
+/* Ensures that if we add a contact form later, you can actually type in it */
+input,
+textarea {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+/* 🪐 Planet Landing Pages — Scrollable override */
+/* Creates a fixed scrollable layer that bypasses global overflow:hidden */
+.planet-page {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  z-index: 1;
+}
+
+/* 📱 P-06: CSS Folding API — Foldable Hinge Guard */
+/* When device is in dual-segment landscape (book/Flex mode), the hinge crease
+   bisects the viewport. This forces .planet-overlay-panel into the right segment
+   so the 3D scene and the UI panel each own one display half cleanly. */
+@media (horizontal-viewport-segments: 2) {
+  .planet-overlay-panel {
+    width: env(viewport-segment-width 1 0) !important;
+    max-width: env(viewport-segment-width 1 0) !important;
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "node": {
+    "40136f71dfa352c6a1bfdc3bf42b00cc95fdf90a77": {
+      "workers": {
+        "app/secret-control-room/page": {
+          "moduleId": 95791,
+          "async": false,
+          "exportedName": "generateBlogPost",
+          "filename": "src/app/secret-control-room/actions.ts"
+        }
+      },
+      "layer": {
+        "app/secret-control-room/page": "action-browser"
+      },
+      "exportedName": "generateBlogPost",
+      "filename": "src/app/secret-control-room/actions.ts"
+    }
+  },
+  "edge": {}
+}

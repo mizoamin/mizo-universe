@@ -1,0 +1,394 @@
+/* ✨ MIZO UNIVERSE DESIGN TOKENS v2.0 — FOUNDATION LAYER */
+/* Single Source of Truth for all visual design constants */
+
+:root {
+  /* ========================================
+     1. COLOR PALETTE — PRIMARY ACCENTS
+     ======================================== */
+
+  /* Primary interaction color */
+  --color-accent-prime: #00ffaa;
+  --color-accent-prime-dark: #00cc88;
+  --color-accent-prime-pale: #00ffaa33;
+
+  /* Secondary interaction (icy blue) */
+  --color-accent-secondary: #00d4ff;
+  --color-accent-secondary-dark: #00a8cc;
+  --color-accent-secondary-pale: #00d4ff33;
+
+  /* Tertiary alerts/important */
+  --color-accent-tertiary: #ff7aff;
+  --color-accent-tertiary-dark: #cc66cc;
+  --color-accent-tertiary-pale: #ff7aff33;
+
+  /* ========================================
+     2. PLANET THEME COLORS (PER DOMAIN)
+     ======================================== */
+
+  /* IDENTITY — Golden Heritage */
+  --color-planet-identity: #ffd700;
+  --color-planet-identity-light: #ffeb3b;
+  --color-planet-identity-dark: #cc9900;
+
+  /* LEGACY — Victory Gold */
+  --color-planet-legacy: #ff9800;
+  --color-planet-legacy-light: #ffb74d;
+  --color-planet-legacy-dark: #e65100;
+
+  /* VISION — Neural Sapphire */
+  --color-planet-vision: #2196f3;
+  --color-planet-vision-light: #64b5f6;
+  --color-planet-vision-dark: #1565c0;
+
+  /* ODYSSEY — Earth Cyan */
+  --color-planet-odyssey: #00bcd4;
+  --color-planet-odyssey-light: #4dd0e1;
+  --color-planet-odyssey-dark: #00838f;
+
+  /* VENTURES — Corporate Purple */
+  --color-planet-ventures: #9c27b0;
+  --color-planet-ventures-light: #ce93d8;
+  --color-planet-ventures-dark: #6a1b9a;
+
+  /* VOICE — Sonic Pink */
+  --color-planet-voice: #e91e63;
+  --color-planet-voice-light: #f06292;
+  --color-planet-voice-dark: #ad1457;
+
+  /* VIDEOGRAM — Chrome Silver */
+  --color-planet-videogram: #9e9e9e;
+  --color-planet-videogram-light: #bdbdbd;
+  --color-planet-videogram-dark: #616161;
+
+  /* LIBRARY — Obsidian White */
+  --color-planet-library: #f5f5f5;
+  --color-planet-library-light: #ffffff;
+  --color-planet-library-dark: #e0e0e0;
+
+  /* CONTACT — Matrix Green */
+  --color-planet-contact: #00ff41;
+  --color-planet-contact-light: #66ff99;
+  --color-planet-contact-dark: #00cc33;
+
+  /* SHIELD — Force Field Blue */
+  --color-planet-shield: #00ffff;
+  --color-planet-shield-light: #66ffff;
+  --color-planet-shield-dark: #00cccc;
+
+  /* ========================================
+     3. TEXT COLORS — IMPROVED HIERARCHY
+     ======================================== */
+
+  /* Primary (headlines, most important) */
+  --color-text-primary: #ffffff;
+
+  /* Secondary (body text, main content) */
+  --color-text-secondary: #d4e6ff;
+
+  /* Tertiary (labels, supporting text) */
+  --color-text-tertiary: #a0c4ff;
+
+  /* Muted (hint text, helper) */
+  --color-text-muted: #7099cc;
+
+  /* Disabled (inactive state) */
+  --color-text-disabled: #456699;
+
+  /* Semantic text colors */
+  --color-text-success: #00ff41;
+  --color-text-warning: #ffb300;
+  --color-text-error: #ff4466;
+  --color-text-info: #00d4ff;
+
+  /* ========================================
+     4. SURFACE COLORS — GLASSMORPHISM
+     ======================================== */
+
+  /* Glass surface layers */
+  --color-surface-glass-1: rgba(5, 20, 35, 0.5);
+  --color-surface-glass-2: rgba(5, 20, 35, 0.65);
+  --color-surface-glass-3: rgba(5, 20, 35, 0.8);
+  --color-surface-glass-4: rgba(0, 10, 20, 0.9);
+
+  /* Void backgrounds */
+  --color-surface-void: rgba(0, 5, 10, 0.95);
+  --color-surface-dark: #050505;
+
+  /* Semantic surface overlays */
+  --color-surface-hover: rgba(0, 255, 170, 0.08);
+  --color-surface-active: rgba(0, 255, 170, 0.15);
+  --color-surface-focus: rgba(0, 212, 255, 0.12);
+  --color-surface-selected: rgba(0, 255, 170, 0.2);
+  --color-surface-disabled: rgba(100, 100, 100, 0.3);
+
+  /* ========================================
+     5. GRADIENT BACKGROUNDS
+     ======================================== */
+
+  --gradient-glass-to-void: linear-gradient(
+    180deg,
+    rgba(5, 20, 35, 0.7) 0%,
+    rgba(0, 5, 10, 0.95) 100%
+  );
+
+  --gradient-accent-glow: linear-gradient(
+    135deg,
+    rgba(0, 255, 170, 0.2) 0%,
+    rgba(0, 212, 255, 0.1) 100%
+  );
+
+  --gradient-neon-pulse: linear-gradient(
+    90deg,
+    rgba(255, 122, 255, 0.3) 0%,
+    rgba(0, 255, 170, 0.3) 100%
+  );
+
+  /* ========================================
+     6. TYPOGRAPHY — MODULAR SCALE
+     ======================================== */
+
+  /* Display (hero titles) */
+  --text-display-1: 3.5rem; /* 56px */
+  --text-display-2: 2.75rem; /* 44px */
+
+  /* Headings */
+  --text-h1: 2.25rem; /* 36px */
+  --text-h2: 1.875rem; /* 30px */
+  --text-h3: 1.5rem; /* 24px */
+  --text-h4: 1.25rem; /* 20px */
+
+  /* Body */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body-md: 1rem; /* 16px */
+  --text-body-sm: 0.875rem; /* 14px */
+  --text-body-xs: 0.75rem; /* 12px */
+
+  /* Code/Mono */
+  --text-mono-md: 0.875rem; /* 14px */
+  --text-mono-sm: 0.75rem; /* 12px */
+
+  /* ========================================
+     7. TYPOGRAPHY — LINE HEIGHTS
+     ======================================== */
+
+  --line-height-display: 1.2;
+  --line-height-heading: 1.3;
+  --line-height-body: 1.6;
+  --line-height-mono: 1.5;
+
+  /* ========================================
+     8. TYPOGRAPHY — FONT WEIGHTS
+     ======================================== */
+
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* ========================================
+     9. TYPOGRAPHY — LETTER SPACING (Tracking)
+     ======================================== */
+
+  --tracking-ultra-tight: -0.05em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-loose: 0.05em;
+  --tracking-hud: 0.08em;
+  --tracking-cinematic: 0.12em;
+  --tracking-whisper: 0.15em;
+
+  /* ========================================
+     10. SPACING — 8PX GRID SYSTEM
+     ======================================== */
+
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ========================================
+     11. BORDER RADIUS — CONSISTENCY
+     ======================================== */
+
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ========================================
+     12. COMPONENT SIZING
+     ======================================== */
+
+  --size-touch-target: 44px;
+  --size-icon-sm: 16px;
+  --size-icon-md: 24px;
+  --size-icon-lg: 32px;
+  --size-icon-xl: 48px;
+
+  /* ========================================
+     13. BLUR & GLASSMORPHISM
+     ======================================== */
+
+  --blur-glass-xs: blur(8px);
+  --blur-glass-sm: blur(12px);
+  --blur-glass-md: blur(24px);
+  --blur-glass-lg: blur(32px);
+  --blur-glass-xl: blur(48px);
+
+  --opacity-glass-surface: 0.7;
+  --opacity-glass-deep: 0.85;
+  --opacity-glass-ghost: 0.1;
+
+  /* ========================================
+     14. SHADOWS — CINEMATIC DEPTH SYSTEM
+     ======================================== */
+
+  /* No shadow (flat) */
+  --shadow-none: none;
+
+  /* Level 1 — Subtle elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 255, 170, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.1);
+
+  /* Level 2 — Card elevation */
+  --shadow-md: 0 4px 12px rgba(0, 255, 170, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.2);
+
+  /* Level 3 — Modal/Panel elevation */
+  --shadow-lg: 0 12px 32px rgba(0, 255, 170, 0.15),
+    0 20px 40px rgba(0, 0, 0, 0.3);
+
+  /* Level 4 — Maximum depth */
+  --shadow-xl: 0 20px 60px rgba(0, 255, 170, 0.2),
+    0 30px 80px rgba(0, 0, 0, 0.4);
+
+  /* Glow effects */
+  --shadow-glow-primary: 0 0 20px rgba(0, 255, 170, 0.4),
+    0 0 40px rgba(0, 255, 170, 0.2),
+    inset 0 0 20px rgba(0, 200, 255, 0.1);
+
+  --shadow-glow-secondary: 0 0 16px rgba(0, 212, 255, 0.3),
+    0 0 32px rgba(0, 212, 255, 0.15);
+
+  --shadow-glow-accent: 0 0 24px rgba(255, 122, 255, 0.3),
+    0 0 48px rgba(255, 122, 255, 0.15);
+
+  /* Inset shadows */
+  --shadow-inset-sm: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-inset-md: inset 0 4px 12px rgba(0, 0, 0, 0.3);
+
+  /* Planet-specific glows */
+  --shadow-glow-identity: 0 0 20px rgba(255, 215, 0, 0.4),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+
+  --shadow-glow-legacy: 0 0 20px rgba(255, 152, 0, 0.4),
+    inset 0 0 20px rgba(255, 152, 0, 0.1);
+
+  --shadow-glow-vision: 0 0 20px rgba(33, 150, 243, 0.4),
+    inset 0 0 20px rgba(33, 150, 243, 0.1);
+
+  --shadow-glow-odyssey: 0 0 20px rgba(0, 188, 212, 0.4),
+    inset 0 0 20px rgba(0, 188, 212, 0.1);
+
+  --shadow-glow-ventures: 0 0 20px rgba(156, 39, 176, 0.4),
+    inset 0 0 20px rgba(156, 39, 176, 0.1);
+
+  --shadow-glow-voice: 0 0 20px rgba(233, 30, 99, 0.4),
+    inset 0 0 20px rgba(233, 30, 99, 0.1);
+
+  --shadow-glow-videogram: 0 0 20px rgba(158, 158, 158, 0.4),
+    inset 0 0 20px rgba(158, 158, 158, 0.1);
+
+  --shadow-glow-library: 0 0 20px rgba(245, 245, 245, 0.4),
+    inset 0 0 20px rgba(245, 245, 245, 0.1);
+
+  --shadow-glow-contact: 0 0 20px rgba(0, 255, 65, 0.4),
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+
+  --shadow-glow-shield: 0 0 20px rgba(0, 255, 255, 0.4),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+
+  /* ========================================
+     15. ANIMATION & TIMING
+     ======================================== */
+
+  /* Duration tiers */
+  --duration-instant: 0ms;
+  --duration-instant-short: 75ms;
+  --duration-quick: 150ms;
+  --duration-fast: 200ms;
+  --duration-moderate: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 750ms;
+  --duration-cinematic: 1200ms;
+
+  /* Easing functions */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out-motion: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS (Mobile-first)
+   ======================================== */
+
+@media (max-width: 768px) {
+  :root {
+    /* Reduce text sizes for mobile */
+    --text-display-1: 2.5rem;
+    --text-display-2: 2rem;
+    --text-h1: 1.75rem;
+    --text-h2: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    /* Further reduce for small phones */
+    --text-display-1: 2rem;
+    --text-display-2: 1.625rem;
+    --text-h1: 1.375rem;
+  }
+}
+
+/* ========================================
+   DARK MODE SUPPORT (Future)
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  /* Already dark, no changes needed */
+}
+
+/* ========================================
+   REDUCED MOTION (Accessibility)
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-instant-short: 0ms;
+    --duration-quick: 0ms;
+    --duration-fast: 0ms;
+    --duration-moderate: 0ms;
+    --duration-slow: 50ms;
+    --duration-slower: 100ms;
+    --duration-cinematic: 200ms;
+  }
+}

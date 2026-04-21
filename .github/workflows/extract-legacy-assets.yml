@@ -1,0 +1,30 @@
+# GitHub Action: Extract Legacy Assets from Large Manifest
+# NOTE: assets_manifest_v8.json is gitignored (too large for GitHub API).
+# This workflow is disabled (workflow_dispatch only) until the manifest
+# is available via an external CDN/artifact store instead.
+
+name: Extract Legacy Assets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  extract-legacy-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run extraction script
+        run: |
+          node scripts/extractLegacyAssets.js
+      - name: Commit and push legacy_assets.json
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add src/data/hostinger-registry/legacy_assets.json
+          git commit -m 'chore: update legacy_assets.json [auto]' || echo 'No changes to commit'
+          git push
